@@ -1,0 +1,274 @@
+ 
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/serif.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style>
+		table, th, td {
+		    border: 1px solid black;
+		    border-collapse: collapse;
+		}
+
+		</style>
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<!-- title slide -->
+				<section data-background-image= "images/droso_cuticle.jpg">
+					<h2 style="color:red;"> Speed, dissipation, and error in kinetic proofreading </h2>
+					<h4 style="color:green;">Arvind Murugan, David A. Huse, and Stanislas Leibler</h4>
+				</section>
+				<!-- introduction -->
+				<section> 
+					<section>
+						<h2 style="color:blue;"> Kinetic Proofreading </h2>
+					</section>
+
+					<section>
+						<figure>
+						   <img src="images/kp.png" width="60%" height="60%">
+					    </figure>
+					    <p align = "left">
+					    Kinetic proofreading is a mechanism for error correction in biochemical processes, introduced in 1974 by John Hopfield and independently by Jacques Ninio. Proofreading mechanisms enhance the effect of small differences in binding energy on reaction rates at the cost of consuming extra free energy.</p>
+					</section>
+
+					<section>
+						<figure>
+							<img src="images/kp1.png" width="60%" height="60%">
+						</figure>
+						$$\begin{eqnarray}
+						\frac{d[cC]}{dt} &=& k_{on}[c][C] - k_{off}[cC] - w[cC] \\
+						\frac{d[dC]}{dt} &=& k_{on}[d][C] - {k^{\prime}}_{off}[dC] - w[dC] 
+						\end{eqnarray}$$
+						At equilibrium, i.e. $$\frac{d[cC]}{dt} = \frac{d[dC]}{dt} = 0 $$
+						we have,
+
+					</section>
+
+					<section>
+						$$[cC] = \frac{k_{on}[c][C]}{k_{off}+w}$$
+						$$[dC] = \frac{k_{on}[d][C]}{{k^{\prime}}_{off}+w}$$
+						hence the error rate is given by
+						$$\eta = \frac{k_{off} + w}{{k^{\prime}}_{off} + w}$$
+						<p style="color:blue;"> typically the off rate for the wrong substrate is larger than the off rate for the right substrate </p>
+						<p style="color:red;"> can one do better ?</p>
+
+					</section>
+
+					<section>
+						<figure>
+						   <img src="images/kp2.png" width="60%" height="60%">	
+						</figure>
+						$$\begin{eqnarray}
+						\frac{d[c^{*}C]}{dt} &=& m[c][C] - l_c[c^{*}C]  \\
+						\frac{d[d^{*}C]}{dt} &=& m[d][C] - l_d[d^{*}C]  
+						\end{eqnarray}$$
+
+					</section>
+
+					<section>
+						at steady state we have,
+						$$\begin{eqnarray}
+						[c^{*}C] &=& \frac{m[cC]}{l_c} &=& \frac{m[c][C]}{l_c k_{off}} \\
+						[d^{*}C] &=& \frac{m[dC]}{l_d} &=& \frac{m[d][C]}{l_d {k^{\prime}}_{off}}
+						\end{eqnarray}$$
+						error rate becomes,
+						$$\eta = \frac{k_{off} l_c}{{k^{\prime}}_{off} l_d} $$
+						under certain assumptions the error rate becomes,
+						$$\eta = \left(\frac{k_{off}}{{k^{\prime}}_{off}}\right)^2 $$
+					</section>
+
+					<section>
+					    <h3 style="color:blue;"> From 1 intermediate step to n intermediate steps </h3>
+						<figure>
+							<img src="images/kp3.png" width="100%" height="100%">
+						</figure>
+						$$\eta = \left(\frac{k_{off}}{{k^{\prime}}_{off}}\right)^{n+1} $$
+					</section>
+
+				</section>
+				<!-- new work -->
+				<section>
+					<section>
+						<h2 style="color:green;"> Revisiting KPR </h2>
+					</section>
+
+					<section>
+					    <h3 style="color:green;"> One intermediate step </h3>
+						<figure>
+                            <img src="images/F1.jpg" width="100%" height="100%">
+						</figure>
+						$$ \theta_{13} = \frac{k_{13}}{k_{12}}, \theta_{23} = \frac{k_{23}}{k_{21}}, \theta_{32} = \frac{k_{32}}{k_{31}}, \gamma = \frac{g}{k_{31}} $$
+						the proofreading is most effective when,
+						$$ \gamma,\theta_{23},\theta_{32} <<  1 << e^{\Delta}, e^{\Delta} \theta_{13} << \theta_{23} $$  
+                        the error rate and time taken to produce a molecule of the correct product is given by
+						$$\eta \sim e^{-2\Delta},  T_{R} \sim (\gamma \theta_{23})^{-1} k^{-1}_{12} $$
+					</section>
+
+					<section>
+					  <h3 style="color:green;"> More intermediate steps </h3>
+						<figure>
+                            <img src="images/F3.jpg" width="50%" height="50%">
+						</figure>
+						<p style="color:red;"> The bold lines indicate the path the enzyme has to take in order for the product to be produced. Ideally in this regime one would like to obtain an error rate,</p>
+						$$\eta \sim e^{-(n+1)\Delta}$$
+					</section>
+
+					<section>
+						<h3 style="color:green;"> Few points to note </h3>
+						<ul>
+						  <li> the boldened path leads to product formation. </li>
+						  <li> most attempts to follow the dominant path leads to enzyme being ejected off this path through <b>n</b> sideways paths. </li>
+						  <li> each sideways path contains a discriminatory reaction carrying a factor $e^{\Delta}$ for <b>W</b>. </li>
+						  <li> probability of not taking a given sideway path is higher for <b>R</b> than for <b>W</b>.
+
+						</ul>
+					</section>
+
+					<section>
+						<h3 style="color:blue;"> KPR on Ladder network </h3>
+						<figure>
+							<img src="images/F4.jpg" width="70%" height="70%">
+						</figure>
+						$$ c_{R} = \frac{d}{d+f}, c_{W} = \frac{d e^{\Delta}}{d e^{\Delta} + f}, r = \frac{u}{u+b} $$
+					</section>
+
+					<section>
+						<h3 style="color:red;"> Dynamic instability of microtubules </h3>
+						<ul>
+						  <li> Microtubules are made of tubulin monomers </li>
+						  <li> polymer formation process is driven by hydrolysis of GTP associated with tubulin </li>
+						  <li> microtubules grows at rapid rate $v_{g}$ until a "catastrophe" event </li>
+						  <li> constant probability per unit time, $f_{cat}$ for a catastophe event </li>
+						  <li> after the catastrophe event the polymer shrinks at rate $v_{s}$ until "rescued" </li>
+						  <li> $f_{res}$ is the constant probability per unit time for the shrinking polymer to be rescued </li>
+
+						</ul>
+					</section>
+
+					<section>
+					    <h4 style="color:red;"> Two regimes of growth of microtubules </h4>
+					    <p style="color:green;"> bounded growth regime </p>
+					    $$\frac{v_g}{f_{cat}} < \frac{v_s}{f_{res}}$$ 
+
+					    <p style="color:green;"> unbounded growth regime </p>
+					    $$\frac{v_g}{f_{cat}} > \frac{v_s}{f_{res}}$$ 
+
+					</section>
+
+					<section>
+						<h3 style="color:green;"> Analysis of the ladder network of KPR </h3>
+						Defining 2 independent parameters $\mu$ and $\lambda$,
+						$$ \mu \equiv \frac{c_R}{1-c_R} = \frac{d}{f} ; \lambda \equiv \frac{r}{1-r} ; \xi \equiv \frac{\mu}{\lambda} $$
+						
+						for large $\lambda$ i.e. $r \sim 1 $ with fixed \xi the $\eta$ and $T_R$ can be found to be,
+
+						$$\eta = e^{-\Delta}\left( \frac{\xi^{n+1}-1}{\xi^{n+1}e^{(n+1)\Delta}-1} \frac{\xi e^{\Delta}-1}{\xi-1} \right)$$
+                        and 
+						$$T_R \sim (n+2)\lambda \left(\frac{2\xi^{n+2}-(2n+1)\xi^2 + 2(n-1)\xi + 1}{(\xi-1)^{-2}} \right)$$
+
+					</section>
+
+					<section>
+						<h2 style="color:red;"> 3 Regimes of KPR </h2>
+					</section>
+
+					<section>
+						<h3 style="color:green;"> Regime 1: $\xi >> 1$  $\Longrightarrow  r < c_R < c_w $ </h3>
+						both R and W undergo bounded walks, returning repeatedly to the origin
+						<br> </br>
+						$$ \eta \sim e^{-(n+1)\Delta}$$ 
+						$$ T_R \sim \lambda\xi^n $$
+
+					</section>
+
+					<section>
+						<h3 style="color:green;"> Regime 2: $1 >> \xi >> e^{-\Delta}$  $\Longrightarrow   c_R < r < c_w $ </h3>
+						only W undergoes bounded walks, returning repeatedly to the origin
+						<br> </br>
+						$$ \eta \sim e^{-\Delta} e^{-n\Delta(1-\alpha)}$$
+						where $\alpha < 1$, $e^{-\alpha\Delta} \equiv \xi $ 
+						$$ T_R \sim 2 n \lambda $$
+
+
+					</section>
+
+
+					<section>
+						<h3 style="color:green;"> Regime 3: $e^{-\Delta} >> \xi$  $\Longrightarrow  c_R < c_w < r$ </h3>
+						both R and W undergo unbounded walks
+						<br> </br>
+						$$ \eta \sim e^{-\Delta}$$ 
+						$$ T_R \sim 2n \lambda $$
+
+					</section>
+
+					<section>
+						<figure>
+							<img src="images/F8.jpg" width="70%" height="70%">
+						</figure>
+					</section>
+
+				</section>
+
+
+					
+				
+
+				<!--references-->
+				<section>
+					<h3 style="color:green;"> References </h3>
+					<ul>
+					  <li> Murugan, A., Huse, D. A., Leibler, S. (2012). Speed, dissipation, and error in kinetic proofreading. Proceedings of the National Academy of Sciences, 109(30), 12034-12039.</li>
+					  <li> Hopfield, J. J. (1974). Kinetic proofreading: a new mechanism for reducing errors in biosynthetic processes requiring high specificity. Proceedings of the National Academy of Sciences, 71(10), 4135-4139.</li>
+					  <li> Ninio, J. (1975). Kinetic amplification of enzyme discrimination. Biochimie, 57(5), 587-595. </li>
+												
+					</ul>
+				</section>
+				
+               
+
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/math/math.js', async: true},
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
